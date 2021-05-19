@@ -12,15 +12,6 @@ const google = new scraper({
     },
 });
 
-app.get('/', (req,res)=>{
-    const scrapeImages = async () =>{
-        const results = await google.scrape("ok", 2);
-        console.log('results', results);
-        res.json(results);
-    }
-    scrapeImages();
-})
-
 app.post('/', (req,res)=>{
     const scrapeImages = async () =>{
         const results = await google.scrape(req.body.searchItem, 2);
