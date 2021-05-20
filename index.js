@@ -21,8 +21,18 @@ app.get('/',(req,res)=>{
 
 
 app.post('/', (req,res)=>{
+
     const scrapeImages = async () =>{
-        const results = await google.scrape(req.body.searchItem, req.body.quantity);
+        let result = 0;
+        const results = [];
+        const promises = req.body.searchItems.map(async searchItem=>{
+            result = await google.scrape(searchItem.title, searchItem.quantity);
+            result.splice(0,0,searchItem.title);
+            return result;
+        })
+        for (let index = 0; index < promises.length; index++) {
+            results[index] = await promises[index];
+        }
         res.json(results);
     }
     scrapeImages();
