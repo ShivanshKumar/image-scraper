@@ -8,7 +8,8 @@ app.use(express.json())
 
 const google = new scraper({
     puppeteer: {
-        headless: false,
+        headless: true,
+        args: ['--no-sandbox'] 
     },
 });
 
