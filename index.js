@@ -19,7 +19,7 @@ app.get('/',(req,res)=>{
 
 app.post('/', (req,res)=>{
     const scrapeImages = async () =>{
-        const results = await google.scrape(req.body.searchItem, 2);
+        const results = await google.scrape(req.body.searchItem, req.body.quantity);
         res.json(results);
     }
     scrapeImages();
