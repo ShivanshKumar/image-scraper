@@ -1,10 +1,12 @@
 const express = require("express");
 const scraper = require("images-scraper");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT||8000;
 
 app.use(express.json())
+app.use(cors());
 
 const google = new scraper({
     puppeteer: {
